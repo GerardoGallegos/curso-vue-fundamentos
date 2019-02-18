@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <meta charset="UTF-8">
   <title>Vue Fundamentos</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body>
   <div id="app">
-    <h1>Hola {{ name }} {{ num }}</h1>
+    <h1>Contador: {{ num }}</h1>
+    <button v-on:click="agregar">+</button>
+    <button v-on:click="quitar">-</button>
   </div>
   <script>
-  
+
   const app = new Vue({
     el: '#app',
     data: {
-      name: 'Gerardo Gallegos',
       num: 0
+    },
+    methods: {
+      agregar () {
+        this.num ++
+      },
+
+      quitar () {
+        this.num --
+      }
     }
   })
 
-  setInterval(function (){
-    app.num ++
-  }, 1000)
-
-  
   </script>
 </body>
 </html>
