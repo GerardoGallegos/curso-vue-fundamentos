@@ -3,14 +3,21 @@
 <head>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <meta charset="UTF-8">
+  <style>
+    li {
+      font-size: 20px;
+    }
+  </style>
   <title>Vue Fundamentos</title>
 </head>
 <body>
   <div id="app">
-    <h1>Iterando con Vue</h1>
-    <ul v-for="(fruta, index) in frutasList">
-      <li>
-        {{ fruta.name }} $ {{ fruta.price }}
+    <h1>
+      Iterando Propiedades de Objetos con Vue
+    </h1>
+    <ul>
+      <li v-for="(value, key) of user">
+        {{ value }} - {{ key }}
       </li>
     </ul>
   </div>
@@ -19,18 +26,25 @@
   const app = new Vue({
     el: '#app',
     data: {
+      user: {
+        name: 'Ninja PRO',
+        country: 'USA',
+        age: 22
+      },
+
+      frutas: [
+        'Fresa',
+        'Manzana',
+        'Sandia',
+        'Durazno',
+        'Pera'
+      ],
+    
       frutasList: [
         { name: 'Piña', price: '5.00' },
         { name: 'Melon', price: '3.24' },
         { name: 'Cereza', price: '4.61' }
       ]
-      // frutas: [
-      //   'Fresa',
-      //   'Manzana',
-      //   'Sandia',
-      //   'Durazno',
-      //   'Pera'
-      // ]
     }
   })
 
