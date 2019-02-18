@@ -10,11 +10,14 @@
     <h1>Contador: {{ num }}</h1>
     <button v-on:click="agregar">+</button>
     <button v-on:click="quitar">-</button>
-    <h2 v-if="num === 3">
+    <h2 v-if="num === 2">
       Tomalo con calma! IF
     </h2>
-    <h2 v-show="num === 3">
-      Tomalo con calma! SHOW
+    <h2 v-else-if="num === 5">
+      Cinco
+    </h2>
+    <h2 v-else>
+      *********
     </h2>
   </div>
   <script>
@@ -22,8 +25,7 @@
   const app = new Vue({
     el: '#app',
     data: {
-      num: 0,
-      mostrar: false
+      num: 0
     },
 
     methods: {
