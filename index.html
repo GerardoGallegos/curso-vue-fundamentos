@@ -7,35 +7,30 @@
 </head>
 <body>
   <div id="app">
-    <h1>Contador: {{ num }}</h1>
-    <button v-on:click="agregar">+</button>
-    <button v-on:click="quitar">-</button>
-    <h2 v-if="num === 2">
-      Tomalo con calma! IF
-    </h2>
-    <h2 v-else-if="num === 5">
-      Cinco
-    </h2>
-    <h2 v-else>
-      *********
-    </h2>
+    <h1>Iterando con Vue</h1>
+    <ul v-for="(fruta, index) in frutasList">
+      <li>
+        {{ fruta.name }} $ {{ fruta.price }}
+      </li>
+    </ul>
   </div>
   <script>
 
   const app = new Vue({
     el: '#app',
     data: {
-      num: 0
-    },
-
-    methods: {
-      agregar () {
-        this.num ++
-      },
-
-      quitar () {
-        this.num --
-      }
+      frutasList: [
+        { name: 'Piña', price: '5.00' },
+        { name: 'Melon', price: '3.24' },
+        { name: 'Cereza', price: '4.61' }
+      ]
+      // frutas: [
+      //   'Fresa',
+      //   'Manzana',
+      //   'Sandia',
+      //   'Durazno',
+      //   'Pera'
+      // ]
     }
   })
 
