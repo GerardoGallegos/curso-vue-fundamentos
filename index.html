@@ -5,44 +5,52 @@
   <meta charset="UTF-8">
   <style>
     li {
-      font-size: 20px;
+      font-size: 25px;
     }
   </style>
   <title>Vue Fundamentos</title>
 </head>
 <body>
   <div id="app">
-    <h1>
-      Iterando Propiedades de Objetos con Vue
-    </h1>
-    <ul v-for="(value, key) of user">
-      <li>{{ value }} - {{ key }}</li>
-    </ul>
+    <h1> Usando Filtros </h1>
+    <ul v-for="fruta in frutas">
+      <li>
+        {{ fruta | capitalize | decorador('((', '***') }}
+      </li>
+    </ul> 
   </div>
   <script>
 
   const app = new Vue({
     el: '#app',
     data: {
-      user: {
-        name: 'Ninja PRO',
-        country: 'USA',
-        age: 22
+      frutas: [
+        'fResa',
+        'manZaNA',
+        'SANDIA',
+        'durazNO',
+        'pEra'
+      ]
+    },
+
+    filters: {
+      uppercase (text) {
+        return text.toUpperCase()
+      },
+  
+      lowecase (text) {
+        return text.toLowerCase()
       },
 
-      frutas: [
-        'Fresa',
-        'Manzana',
-        'Sandia',
-        'Durazno',
-        'Pera'
-      ],
-    
-      frutasList: [
-        { name: 'Piña', price: '5.00' },
-        { name: 'Melon', price: '3.24' },
-        { name: 'Cereza', price: '4.61' }
-      ]
+      capitalize (text) {
+        return text
+          .replace(/\b\w/g, str => str.toUpperCase())
+          .replace(/\B\w/g, str => str.toLowerCase())
+      },
+
+      decorador (text, a, b) {
+        return `${a} ${text} ${b}`
+      }
     }
   })
 
