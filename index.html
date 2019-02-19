@@ -4,52 +4,53 @@
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <meta charset="UTF-8">
   <style>
-    li {
-      font-size: 25px;
+    h1 {
+      font-size: 35px;
+    }
+    div {
+      font-size: 35px;
     }
   </style>
   <title>Vue Fundamentos</title>
 </head>
 <body>
   <div id="app">
-    <h1> Usando Filtros </h1>
-    <ul v-for="fruta in frutas">
-      <li>
-        {{ fruta | capitalize | decorador('((', '***') }}
-      </li>
-    </ul> 
+    <h1> Sumatoria en Propiedades computadas </h1>
+    <ul v-for="product in products">
+      <li>{{ product.name }} - $ {{ product.price }}</li>
+    </ul>
+    <div>
+      {{ totalProducts }} Productos
+    </div>
+    <div>
+      $ {{ totalPrice }}
+    </div>
   </div>
   <script>
 
   const app = new Vue({
     el: '#app',
     data: {
-      frutas: [
-        'fResa',
-        'manZaNA',
-        'SANDIA',
-        'durazNO',
-        'pEra'
+      products: [
+        { name: 'Monitor Dell', price: 255.99 },
+        { name: 'Mouse Gamer', price: 68.99 },
+        { name: 'Keyboard', price: 178.14 },
+        { name: 'Speakers', price: 142.12 }
       ]
     },
 
-    filters: {
-      uppercase (text) {
-        return text.toUpperCase()
+    computed: {
+      totalProducts () {
+        return this.products.length
       },
-  
-      lowecase (text) {
-        return text.toLowerCase()
-      },
+      totalPrice () {
+        let total = 0
 
-      capitalize (text) {
-        return text
-          .replace(/\b\w/g, str => str.toUpperCase())
-          .replace(/\B\w/g, str => str.toLowerCase())
-      },
+        this.products.forEach(product => {
+          total += product.price
+        })
 
-      decorador (text, a, b) {
-        return `${a} ${text} ${b}`
+        return total
       }
     }
   })
