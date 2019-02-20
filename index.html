@@ -5,53 +5,26 @@
   <meta charset="UTF-8">
   <style>
     h1 {
-      font-size: 35px;
+      font-size: 23px;
     }
-    div {
-      font-size: 35px;
+    div, textarea {
+      font-size: 20px;
     }
   </style>
   <title>Vue Fundamentos</title>
 </head>
 <body>
   <div id="app">
-    <h1> Sumatoria en Propiedades computadas </h1>
-    <ul v-for="product in products">
-      <li>{{ product.name }} - $ {{ product.price }}</li>
-    </ul>
-    <div>
-      {{ totalProducts }} Productos
-    </div>
-    <div>
-      $ {{ totalPrice }}
-    </div>
+    <h1>Directiva v-html</h1>
+    <textarea v-model="code"></textarea>
+    <div v-html="code"></div>
   </div>
   <script>
 
   const app = new Vue({
     el: '#app',
     data: {
-      products: [
-        { name: 'Monitor Dell', price: 255.99 },
-        { name: 'Mouse Gamer', price: 68.99 },
-        { name: 'Keyboard', price: 178.14 },
-        { name: 'Speakers', price: 142.12 }
-      ]
-    },
-
-    computed: {
-      totalProducts () {
-        return this.products.length
-      },
-      totalPrice () {
-        let total = 0
-
-        this.products.forEach(product => {
-          total += product.price
-        })
-
-        return total
-      }
+      code: ''
     }
   })
 
