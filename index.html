@@ -7,24 +7,71 @@
     h1 {
       font-size: 23px;
     }
-    div, textarea {
+    div, textarea, input, button {
       font-size: 20px;
+      margin: 10px 0;
     }
   </style>
   <title>Vue Fundamentos</title>
 </head>
 <body>
   <div id="app">
-    <h1>Directiva v-html</h1>
-    <textarea v-model="code"></textarea>
-    <div v-html="code"></div>
+    <h1>Manejando Eventos</h1>
+    <input type="text" v-model="evento">
+    <button @[evento]="suma">
+      Disparar Evento
+    </button>
+
+    <button @click="saluda('hola')">
+      Hola
+    </button>
+
+    <button @click="saluda('Bye')">
+      Bye
+    </button>
+
+    <h3>
+      {{ count }}
+    </h3>
+    
+    <ul>
+      <li v-for="user in users">
+        <div @click="select(user, $event)">
+          {{ user.name }}
+        </div>
+      </li>
+    </ul>
+
   </div>
   <script>
 
   const app = new Vue({
     el: '#app',
     data: {
-      code: ''
+      count: 0,
+      evento: 'click',
+      users: [
+        { name: 'Gerardo Gallegos', country: 'Mexico' },
+        { name: 'Susane Olmos', country: 'Colombia' },
+        { name: 'Chistian Smith', country: 'USA' },
+        { name: 'Janeth Cervantes', country: 'Chile' },
+        { name: 'Alicia Cabrera', country: 'España' }
+      ]
+    },
+
+    methods: {
+      suma () {
+        this.count += 1
+      },
+
+      saluda (message) {
+        alert(message)
+      },
+
+      select (user, event) {
+        alert(`Seleccionaste: ${user.name}`)
+        console.log(event)
+      }
     }
   })
 
